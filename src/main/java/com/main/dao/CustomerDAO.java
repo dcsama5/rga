@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class CustomerDAO implements DAO {
 	
 	@Override
 	@Transactional
+	//@Secured("ROLE_AMEER")
 	public void addCustomer(Customer customer) {
 		currentSession().save(customer);
 	}
@@ -32,6 +34,7 @@ public class CustomerDAO implements DAO {
 	
 	@Override
 	@Transactional
+	@Secured("ROLE_USER")
 	public List<Customer> findAllCustomers() {
 		Query query = currentSession().getNamedQuery("customer.findAll");
 		List<Customer> customers = query.list();
@@ -46,6 +49,7 @@ public class CustomerDAO implements DAO {
 
 	@Override
 	@Transactional
+	//@Secured("ROLE_AMEER")
 	public void updateCustomer(Customer customer) {
 		currentSession().update(customer);
 	}

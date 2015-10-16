@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Table
 @Entity
@@ -21,10 +23,13 @@ public class Customer implements Serializable {
 	
 	@Id
 	@Column(nullable=false, unique=true)
+	@NotEmpty
 	private String username;
 	
+	@NotEmpty
 	private String password;
 	
+	@Email
 	private String email;
 
 	public String getUsername() {
