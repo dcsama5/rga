@@ -56,11 +56,11 @@ public class WelcomeController {
 	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String updatePOST(@RequestBody Customer customer) {
+	public void updatePOST(@RequestBody Customer customer) {
 		System.out.println(customer.getUsername());
 		System.out.println(customer.getPassword());
 		System.out.println(customer.getEmail());
-		return "update";
+		customerDAO.updateCustomer(customer);
 	}
 	
 	@RequestMapping(value="/list")
